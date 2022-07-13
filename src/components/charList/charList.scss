@@ -1,0 +1,25 @@
+@import '../../style/variables.scss';
+
+.char {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 200px);
+        gap: 30px 25px;
+    }
+    img {
+        height: 200px;
+        width: 200px;
+    }
+    &__item {
+        background: #232222;
+    }
+    &__name {
+        height: 118px;
+        color: #fff;
+        font-size: 29px;
+        font-weight: 700;
+        margin: 15px 0 0 15px;
+    }
+
+ 
+}

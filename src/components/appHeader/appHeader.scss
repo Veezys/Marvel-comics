@@ -1,0 +1,26 @@
+@import '../../style/variables.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    &__title {
+        font-size: 28px;
+        
+    }
+    span {
+        color: red;
+    }
+    &__menu {
+        font-size: 24px;
+        min-width: 200px;
+        font-weight: 400;
+    }
+    &__list {
+        display: flex;
+        justify-content: space-between;
+    }
+    &-red {
+        color: red;
+    }
+    
+}
