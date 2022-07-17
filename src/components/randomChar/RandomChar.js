@@ -7,11 +7,6 @@ import mjolnir from '../../resources/img/mjolnir.png';
 import Spinner from '../components/Spinner';
 
 class RandomChar extends Component {
-    constructor(props) {
-        super(props);
-        this.updateChar();
-    }
-    
     state = {
         char: {},
         loading: true,
@@ -20,6 +15,7 @@ class RandomChar extends Component {
 
     marvelService = new MarvelService ();
 
+    
     onCharLoaded = (char) => {
         this.setState({
             char,
@@ -35,11 +31,16 @@ class RandomChar extends Component {
     }
 
     updateChar = () => {
-        const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-        this.marvelService.getCharacter(id)
+        const id = Math.floor(Math.random() * (1 - 128) + 127);
+        this.marvelService.getRickChar(id)
         .then(this.onCharLoaded)
         .catch(this.onError);
     }
+    componentDidMount() {
+        this.updateChar();
+    }
+    
+
     render () {
         const {char, loading, error} = this.state;
         const errorMessage = error ? <Error/> : null;
@@ -60,7 +61,7 @@ class RandomChar extends Component {
                     <p className="randomchar__title">
                         Or choose another one
                     </p>
-                    <button className="button button__main">
+                    <button className="button button__main" onClick={this.updateChar}>
                         <div className="inner">try it</div>
                     </button>
                     <img src={mjolnir} alt="mjolnir" className="randomchar__decoration"/>
@@ -71,16 +72,18 @@ class RandomChar extends Component {
 }
 
 const View = ({char}) => {
-    const {name, description, thumbnail, homepage, wiki} = char;
+    const {name, species, status, gender, image, homepage, wiki} = char;
 
     return (
         <div className="randomchar__block">
-            <img src={thumbnail} alt="Random character" className="randomchar__img"/>
+            <img src={image} alt="Random character" className="randomchar__img"/>
             <div className="randomchar__info">
                 <p className="randomchar__name">{name}</p>
-                <p className="randomchar__descr">
-                    {description}
-                </p>
+                <div className="randomchar__descr">
+                    <p>Species: {species}</p>
+                    <p>Status: {status}</p> 
+                    <p>Gender: {gender}</p>
+                </div>
                 <div className="randomchar__btns">
                     <a href={homepage} className="button button__main">
                         <div className="inner">homepage</div>

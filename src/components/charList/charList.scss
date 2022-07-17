@@ -6,12 +6,12 @@
         grid-template-columns: repeat(3, 200px);
         gap: 30px 25px;
     }
-    img {
-        height: 200px;
-        width: 200px;
-    }
     &__item {
         background: #232222;
+        img {
+            height: 200px;
+            width: 200px;
+        }
     }
     &__name {
         height: 118px;
